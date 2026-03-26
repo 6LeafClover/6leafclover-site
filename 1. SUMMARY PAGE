@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="/assets/style.css">
+  <title>6 Leaf Clover</title>
+</head>
+
+<body>
+
+<header>
+  <img src="/assets/6leaf-main.png" class="logo" />
+  <nav>
+    <a href="/">Summary</a>
+    <a href="/objectif-lune.html">Objectif Lune</a>
+    <a href="/partners.html">Partners</a>
+    <a href="/process.html">Process</a>
+    <a href="/insights.html">Insights</a>
+  </nav>
+</header>
+
+<div class="container hero">
+<h1>Partner-Led Growth & Enterprise Automation</h1>
+
+<p>6 Leaf Clover helps technology companies, consultancies and enterprise organisations turn automation capability into measurable commercial and operational results.</p>
+
+<p>Most organisations invest in platforms, partners and transformation. The results often fall short.</p>
+
+<ul>
+<li>Partner programmes exist but don’t produce revenue</li>
+<li>Automation technology is under-used</li>
+<li>Transformation programmes drift</li>
+</ul>
+
+<p>We fix that.</p>
+
+<h2>What We Do</h2>
+
+<h3>Partner-Led Revenue Growth</h3>
+<p>We build partner ecosystems that generate real revenue. Programmes, models and discipline that scale.</p>
+
+<h3>Enterprise Automation & Transformation</h3>
+<p>We design and lead automation programmes that deliver measurable outcomes — cost, efficiency and margin.</p>
+
+<h3>Objectif Lune Advisory</h3>
+<p>We help organisations get more value from Objectif Lune — commercially and operationally.</p>
+
+<h2>How We Work</h2>
+<ul>
+<li>Strategic advisory and programme oversight</li>
+<li>Partner ecosystem design</li>
+<li>Automation architecture and delivery</li>
+</ul>
+
+<p class="cta">Outcome: revenue growth, working automation, real commercial value.</p>
+
+</div>
+</body>
+</html>
