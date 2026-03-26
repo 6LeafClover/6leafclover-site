@@ -1,0 +1,18 @@
+6leafclover-site/
+│
+├── index.html              (Summary)
+├── objectif-lune.html
+├── partners.html
+├── process.html
+├── insights.html
+│
+├── /assets
+│   ├── 6leaf-main.png
+│   ├── 6leaf-sub.png
+│   └── style.css
+│
+├── /insights               (CMS content goes here later)
+│
+└── /admin                 (Decap CMS)
+    ├── index.html
+    └── config.yml
