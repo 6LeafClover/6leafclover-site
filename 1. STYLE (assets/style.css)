@@ -1,0 +1,45 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  color: #222;
+  line-height: 1.6;
+}
+
+header {
+  padding: 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.logo {
+  height: 40px;
+}
+
+nav a {
+  margin-right: 20px;
+  text-decoration: none;
+  color: #333;
+}
+
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 40px 20px;
+}
+
+h1 {
+  font-size: 32px;
+}
+
+h2 {
+  margin-top: 40px;
+}
+
+.hero {
+  background: url('/assets/6leaf-sub.png') no-repeat right;
+  background-size: 200px;
+}
+
+.cta {
+  margin-top: 40px;
+  font-weight: bold;
+}
