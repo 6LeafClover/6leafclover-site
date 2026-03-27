@@ -328,3 +328,53 @@ li {
 .article-body strong {
   color: var(--text);
 }
+
+.featured-insight {
+  background: linear-gradient(135deg, rgba(143, 211, 255, 0.10), rgba(255, 255, 255, 0.04));
+  border: 1px solid rgba(143, 211, 255, 0.18);
+}
+
+.featured-insight h3 {
+  font-size: 1.8rem;
+  line-height: 1.15;
+}
+
+.meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.meta-pill {
+  display: inline-block;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--panel-border);
+  background: rgba(255,255,255,0.04);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.post-link {
+  display: inline-block;
+  margin-top: 16px;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.post-link:hover {
+  color: var(--text);
+}
+
+.empty-state {
+  text-align: center;
+  padding: 32px;
+}
+
+.home-latest-card {
+  min-height: 100%;
+}
