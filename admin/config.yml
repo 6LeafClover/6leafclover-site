@@ -16,9 +16,9 @@ publish_mode: editorial_workflow
 collections:
   - name: "insights"
     label: "Insights"
-    folder: "insights/posts"
+    folder: "content/insights"
     create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    slug: "{{slug}}"
     extension: "md"
     format: "frontmatter"
     preview_path: "insights/{{slug}}"
