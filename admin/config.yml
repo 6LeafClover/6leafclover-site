@@ -11,7 +11,7 @@ site_url: "https://www.6leafclover.co.uk"
 display_url: "https://www.6leafclover.co.uk"
 logo_url: "/assets/6leaf-main.png"
 
-publish_mode: editorial_workflow
+publish_mode: simple
 
 collections:
   - name: "insights"
