@@ -5,6 +5,7 @@ const ROOT = process.cwd();
 const CONTENT_DIR = path.join(ROOT, "content", "insights");
 const OUTPUT_DIR = path.join(ROOT, "insights");
 const MANIFEST_FILE = path.join(OUTPUT_DIR, "index.json");
+const LATEST_FILE = path.join(ROOT, "assets", "latest-insight.json");
 
 const SITE = {
   name: "6 Leaf Clover",
@@ -29,9 +30,7 @@ function escapeHtml(text = "") {
 
 function parseFrontmatter(fileContent) {
   const match = fileContent.match(/^---\n([\s\S]*?)\n---\n?([\s\S]*)$/);
-  if (!match) {
-    return { data: {}, body: fileContent };
-  }
+  if (!match) return { data: {}, body: fileContent };
 
   const raw = match[1];
   const body = match[2];
@@ -54,6 +53,17 @@ function parseFrontmatter(fileContent) {
   }
 
   return { data, body };
+}
+
+function inlineMarkdown(text = "") {
+  let output = escapeHtml(text);
+  output = output.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+  output = output.replace(/\*(.+?)\*/g, "<em>$1</em>");
+  output = output.replace(
+    /\[([^\]]+)\]\(([^)]+)\)/g,
+    '<a href="$2" target="_blank" rel="noopener">$1</a>'
+  );
+  return output;
 }
 
 function markdownToHtml(markdown = "") {
@@ -125,19 +135,6 @@ function markdownToHtml(markdown = "") {
   return html.join("\n");
 }
 
-function inlineMarkdown(text = "") {
-  let output = escapeHtml(text);
-
-  output = output.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
-  output = output.replace(/\*(.+?)\*/g, "<em>$1</em>");
-  output = output.replace(
-    /\[([^\]]+)\]\(([^)]+)\)/g,
-    '<a href="$2" target="_blank" rel="noopener">$1</a>'
-  );
-
-  return output;
-}
-
 function stripHtml(html = "") {
   return html.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
 }
@@ -150,6 +147,15 @@ function formatDate(dateValue) {
     month: "long",
     year: "numeric",
   });
+}
+
+function categoryLabel(value = "") {
+  const map = {
+    "objectif-lune": "Objectif Lune",
+    "partner-growth": "Partner Growth",
+    "process-automation": "Process Automation",
+  };
+  return map[value] || "Insights";
 }
 
 function articleTemplate(post) {
@@ -236,15 +242,6 @@ function articleTemplate(post) {
 </html>`;
 }
 
-function categoryLabel(value = "") {
-  const map = {
-    "objectif-lune": "Objectif Lune",
-    "partner-growth": "Partner Growth",
-    "process-automation": "Process Automation",
-  };
-  return map[value] || "Insights";
-}
-
 async function cleanGeneratedFolders() {
   await ensureDir(OUTPUT_DIR);
   const entries = await fs.readdir(OUTPUT_DIR, { withFileTypes: true }).catch(() => []);
@@ -259,6 +256,7 @@ async function cleanGeneratedFolders() {
 async function build() {
   await ensureDir(CONTENT_DIR);
   await ensureDir(OUTPUT_DIR);
+  await ensureDir(path.join(ROOT, "assets"));
   await cleanGeneratedFolders();
 
   const files = await fs.readdir(CONTENT_DIR).catch(() => []);
@@ -311,6 +309,7 @@ async function build() {
   posts.sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0));
 
   await fs.writeFile(MANIFEST_FILE, JSON.stringify(posts, null, 2), "utf8");
+  await fs.writeFile(LATEST_FILE, JSON.stringify(posts[0] || null, null, 2), "utf8");
 
   console.log(`Built ${posts.length} insight post(s).`);
 }
