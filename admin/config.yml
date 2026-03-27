@@ -1,1 +1,39 @@
+backend:
+  name: git-gateway
+  branch: main
 
+local_backend: false
+
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
+site_url: "https://www.6leafclover.co.uk"
+display_url: "https://www.6leafclover.co.uk"
+logo_url: "/assets/6leaf-main.png"
+
+publish_mode: editorial_workflow
+
+collections:
+  - name: "insights"
+    label: "Insights"
+    folder: "insights/posts"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    preview_path: "insights/{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "SEO Title", name: "seo_title", widget: "string", required: false }
+      - { label: "Meta Description", name: "description", widget: "text" }
+      - label: "Category"
+        name: "category"
+        widget: "select"
+        options:
+          - { label: "Objectif Lune", value: "objectif-lune" }
+          - { label: "Partner Growth", value: "partner-growth" }
+          - { label: "Process Automation", value: "process-automation" }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Featured Image", name: "thumbnail", widget: "image", required: false }
+      - { label: "Summary", name: "summary", widget: "text" }
+      - { label: "Body", name: "body", widget: "markdown" }
