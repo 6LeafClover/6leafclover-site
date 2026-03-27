@@ -27,11 +27,24 @@
     <div class="container hero-copy">
       <div class="eyebrow">Insights</div>
       <h1>Field insight on Objectif Lune, partner growth and enterprise automation.</h1>
-      <p>This is where your articles will appear automatically as you publish through Decap CMS.</p>
-      <p>The goal is simple: publish useful insight that answers real commercial and delivery problems.</p>
+      <p>This is where your articles appear automatically as you publish through Decap CMS.</p>
+      <p>Useful thinking. Clear language. Practical commercial relevance.</p>
       <div class="button-row">
         <a class="button" href="mailto:matt@6leafclover.co.uk">Email Matt</a>
         <a class="button-secondary" href="https://outlook.office.com/bookwithme/user/096431fd04e74d8491d724ad463fd408@6leafclover.co.uk/meetingtype/wNoemyp6DkeDweaqhTh28A2?anonymous&amp;ismsaljsauthenabled&amp;ep=mlink" target="_blank" rel="noopener">Book Time</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div id="featured-post">
+        <div class="panel featured-insight">
+          <div class="section-header">
+            <div class="section-label">Featured insight</div>
+            <h2>Loading latest post…</h2>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -43,7 +56,7 @@
         <h2>Published insight, straight from the field.</h2>
       </div>
 
-      <div id="posts" class="grid-3">
+      <div id="posts" class="grid-2">
         <div class="card">
           <h3>Loading posts…</h3>
           <p>Please wait a moment.</p>
@@ -77,7 +90,8 @@
 
 <script>
   async function loadPosts() {
-    const container = document.getElementById("posts");
+    const featuredContainer = document.getElementById("featured-post");
+    const postsContainer = document.getElementById("posts");
 
     try {
       const response = await fetch("/insights/index.json");
@@ -86,29 +100,79 @@
       const posts = await response.json();
 
       if (!posts.length) {
-        container.innerHTML = `
-          <div class="card">
+        featuredContainer.innerHTML = `
+          <div class="panel featured-insight">
+            <div class="section-header">
+              <div class="section-label">Featured insight</div>
+              <h2>No posts yet</h2>
+              <p>Once the first article is published, it will appear here automatically.</p>
+            </div>
+          </div>
+        `;
+
+        postsContainer.innerHTML = `
+          <div class="card empty-state">
             <h3>No posts yet</h3>
-            <p>Your insights will appear here once the first article is published.</p>
+            <p>Your insights will appear here once articles are published.</p>
           </div>
         `;
         return;
       }
 
-      container.innerHTML = posts.map((post) => `
+      const [featured, ...rest] = posts;
+
+      featuredContainer.innerHTML = `
+        <div class="panel featured-insight">
+          <div class="section-header">
+            <div class="section-label">Featured insight</div>
+            <h2>${featured.title}</h2>
+          </div>
+          <div class="meta-row">
+            <span class="meta-pill">${featured.categoryLabel || "Insights"}</span>
+            ${featured.formattedDate ? `<span class="kpi">${featured.formattedDate}</span>` : ""}
+          </div>
+          <p>${featured.summary || ""}</p>
+          <div class="button-row">
+            <a class="button" href="${featured.url}">Read insight</a>
+            <a class="button-secondary" href="mailto:matt@6leafclover.co.uk">Email Matt</a>
+          </div>
+        </div>
+      `;
+
+      if (!rest.length) {
+        postsContainer.innerHTML = `
+          <div class="card empty-state">
+            <h3>No more posts yet</h3>
+            <p>Publish your next article and it will appear here automatically.</p>
+          </div>
+        `;
+        return;
+      }
+
+      postsContainer.innerHTML = rest.map((post) => `
         <article class="card">
-          <div class="section-label">${post.categoryLabel || "Insights"}</div>
+          <div class="meta-row">
+            <span class="meta-pill">${post.categoryLabel || "Insights"}</span>
+            ${post.formattedDate ? `<span class="kpi">${post.formattedDate}</span>` : ""}
+          </div>
           <h3>${post.title}</h3>
           <p>${post.summary || ""}</p>
-          <div class="kpi-row">
-            ${post.formattedDate ? `<div class="kpi">${post.formattedDate}</div>` : ""}
-          </div>
-          <p class="cta"><a href="${post.url}">Read insight →</a></p>
+          <a class="post-link" href="${post.url}">Read insight →</a>
         </article>
       `).join("");
     } catch (error) {
-      container.innerHTML = `
-        <div class="card">
+      featuredContainer.innerHTML = `
+        <div class="panel featured-insight">
+          <div class="section-header">
+            <div class="section-label">Featured insight</div>
+            <h2>Posts are not available yet</h2>
+            <p>Publish another article and they will appear here automatically.</p>
+          </div>
+        </div>
+      `;
+
+      postsContainer.innerHTML = `
+        <div class="card empty-state">
           <h3>Posts are not available yet</h3>
           <p>Once the first article is published, it will appear here automatically.</p>
         </div>
