@@ -27,7 +27,7 @@
     <div class="container hero-copy">
       <div class="eyebrow">Insights</div>
       <h1>Field insight on Objectif Lune, partner growth and enterprise automation.</h1>
-      <p>This is where new articles and commentary will sit as the site grows through Decap CMS.</p>
+      <p>This is where your articles will appear automatically as you publish through Decap CMS.</p>
       <p>The goal is simple: publish useful insight that answers real commercial and delivery problems.</p>
       <div class="button-row">
         <a class="button" href="mailto:matt@6leafclover.co.uk">Email Matt</a>
@@ -38,26 +38,15 @@
 
   <section class="section">
     <div class="container">
-      <div class="panel">
-        <div class="section-header">
-          <div class="section-label">Coming soon</div>
-          <h2>Posts published through the CMS will appear here.</h2>
-          <p>Initial themes will include Objectif Lune, partner-led growth, automation delivery and digital transformation execution.</p>
-        </div>
+      <div class="section-header">
+        <div class="section-label">Latest posts</div>
+        <h2>Published insight, straight from the field.</h2>
+      </div>
 
-        <div id="posts" class="grid-3">
-          <div class="card">
-            <h3>Objectif Lune</h3>
-            <p>Practical guidance on platform value, delivery, positioning and optimisation.</p>
-          </div>
-          <div class="card">
-            <h3>Partner Growth</h3>
-            <p>How to make partner models produce measurable revenue, not just partner noise.</p>
-          </div>
-          <div class="card">
-            <h3>Automation</h3>
-            <p>Field notes on programme delivery, governance, architecture and commercial outcomes.</p>
-          </div>
+      <div id="posts" class="grid-3">
+        <div class="card">
+          <h3>Loading posts…</h3>
+          <p>Please wait a moment.</p>
         </div>
       </div>
     </div>
@@ -85,6 +74,50 @@
     © 6 Leaf Clover · matt@6leafclover.co.uk
   </div>
 </footer>
+
+<script>
+  async function loadPosts() {
+    const container = document.getElementById("posts");
+
+    try {
+      const response = await fetch("/insights/index.json");
+      if (!response.ok) throw new Error("Could not load posts.");
+
+      const posts = await response.json();
+
+      if (!posts.length) {
+        container.innerHTML = `
+          <div class="card">
+            <h3>No posts yet</h3>
+            <p>Your insights will appear here once the first article is published.</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = posts.map((post) => `
+        <article class="card">
+          <div class="section-label">${post.categoryLabel || "Insights"}</div>
+          <h3>${post.title}</h3>
+          <p>${post.summary || ""}</p>
+          <div class="kpi-row">
+            ${post.formattedDate ? `<div class="kpi">${post.formattedDate}</div>` : ""}
+          </div>
+          <p class="cta"><a href="${post.url}">Read insight →</a></p>
+        </article>
+      `).join("");
+    } catch (error) {
+      container.innerHTML = `
+        <div class="card">
+          <h3>Posts are not available yet</h3>
+          <p>Once the first article is published, it will appear here automatically.</p>
+        </div>
+      `;
+    }
+  }
+
+  loadPosts();
+</script>
 
 </body>
 </html>
