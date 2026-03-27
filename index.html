@@ -66,6 +66,24 @@
 
   <section class="section">
     <div class="container">
+      <div class="panel featured-insight">
+        <div class="section-header">
+          <div class="section-label">Latest insight</div>
+          <h2>Fresh thinking from the field.</h2>
+        </div>
+
+        <div id="home-latest">
+          <div class="card home-latest-card">
+            <h3>Loading latest insight…</h3>
+            <p>Please wait a moment.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
       <div class="panel">
         <div class="section-header">
           <div class="section-label">The problem</div>
@@ -123,8 +141,52 @@
       }
     });
   }
+
+  async function loadLatestInsight() {
+    const container = document.getElementById("home-latest");
+
+    try {
+      const response = await fetch("/assets/latest-insight.json");
+      if (!response.ok) throw new Error("Could not load latest insight.");
+
+      const post = await response.json();
+
+      if (!post) {
+        container.innerHTML = `
+          <div class="card home-latest-card empty-state">
+            <h3>No insights yet</h3>
+            <p>Once the first article is published, it will appear here automatically.</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = `
+        <div class="card home-latest-card">
+          <div class="meta-row">
+            <span class="meta-pill">${post.categoryLabel || "Insights"}</span>
+            ${post.formattedDate ? `<span class="kpi">${post.formattedDate}</span>` : ""}
+          </div>
+          <h3>${post.title}</h3>
+          <p>${post.summary || ""}</p>
+          <div class="button-row">
+            <a class="button" href="${post.url}">Read insight</a>
+            <a class="button-secondary" href="/insights.html">View all insights</a>
+          </div>
+        </div>
+      `;
+    } catch (error) {
+      container.innerHTML = `
+        <div class="card home-latest-card empty-state">
+          <h3>Latest insight not available yet</h3>
+          <p>Publish another article and it will appear here automatically.</p>
+        </div>
+      `;
+    }
+  }
+
+  loadLatestInsight();
 </script>
 
 </body>
-</html>
 </html>
