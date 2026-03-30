@@ -12,7 +12,7 @@ const SITE = {
   url: "https://www.6leafclover.co.uk",
   email: "matt@6leafclover.co.uk",
   bookingUrl:
-    "https://outlook.office.com/bookwithme/user/096431fd04e74d8491d724ad463fd408@6leafclover.co.uk/meetingtype/wNoemyp6DkeDweaqhTh28A2?anonymous&ismsaljsauthenabled&ep=mlink",
+    "https://outlook.office.com/bookwithme/user/096431fd04e74d8491d724ad463fd408@6leafclover.co.uk/meetingtype/wNoemyp6DkeDweaqhTh28A2?bookingcode=69d25a57-49e8-44cc-b3cb-9e900e9f0cd9&anonymous&ismsaljsauthenabled&ep=mlink",
 };
 
 async function ensureDir(dir) {
