@@ -5,9 +5,8 @@ description: Why Objectif Lune projects lose momentum after go-live, and what to
   do about it.
 category: objectif-lune
 date: 2026-03-27T12:23:00.000+00:00
-summary: >
-  The real issue is rarely the platform. It is usually ownership, workflow
-  design and post-go-live discipline.
+summary: The real issue is rarely the platform. It is usually ownership,
+  workflow design and post-go-live discipline.
 ---
 ## The real issue
 
