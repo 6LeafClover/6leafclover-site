@@ -6,10 +6,8 @@ description: Most partner programmes don’t generate real revenue. Learn what�
   engine.
 category: partner-growth
 date: 2026-03-31T15:06:00.000+01:00
-summary:
-  Lots of logos. Very little revenue.
-
-  Here’s why most partner programmes fail — and what good actually looks like.
+summary: Lots of logos. Very little revenue.  Here’s why most partner programmes
+  fail — and what good actually looks like.
 ---
 Let’s be honest.
 
