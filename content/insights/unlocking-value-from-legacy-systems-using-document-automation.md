@@ -46,7 +46,9 @@ Because they never connect it to business outcomes.  Many organisations struggle
 When document automation from ERP and Legacy is done properly, three things change.
 
 1. Control Moves Out of IT.  Business teams can own content, templates and changes. That means speed and a better understanding of the departmental business challenges.
+
 2. Output Becomes Consistent.  One platform across print, digital and hybrid channels.  That means consistency, control and compliance.
+
 3. Processes Become Automated.  Documents are no longer outputs. They become part of a workflow and automated.  This applies not just to the customers but also internally.  Getting rid of all those paper pushing process internally.  That means efficiency.
 
 ## The Commercial Impact
