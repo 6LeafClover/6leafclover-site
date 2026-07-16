@@ -1,8 +1,6 @@
 ---
-title: Eighteen months in, the automation programme had spent £2M and delivered
-  nothing live.
-seo_title: Eighteen months in, the automation programme had spent £2M and
-  delivered nothing live.
+title: Eighteen months in, the automation programme had delivered nothing live.
+seo_title: Eighteen months in, the automation programme had delivered nothing live.
 description: How to rescue a stalled process automation project
 category: process-automation
 date: 2026-07-16T09:12:00.000+01:00
