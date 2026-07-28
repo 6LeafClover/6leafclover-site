@@ -1,6 +1,5 @@
 ---
-title: The Partners Were Doing Exactly What They Were Paid to Do. That Was the
-  Problem.
+title: The Problems was that Partners Were Doing Exactly What They Were Paid to Do.
 seo_title: The Partners Were Doing Exactly What They Were Paid to Do. That Was
   the Problem.
 description: When Deal reg is not quite the answer...
