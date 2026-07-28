@@ -2,7 +2,7 @@
 title: The Problems was that Partners Were Doing Exactly What They Were Paid to Do.
 seo_title: The Partners Were Doing Exactly What They Were Paid to Do. That Was
   the Problem.
-description: When Deal reg is not quite the answer...
+description: When Deal Reg is not quite the answer...
 category: partner-growth
 date: 2026-07-28T09:03:00.000+01:00
 summary: "A case study to illustrate a pattern we see often: partner behaviour
