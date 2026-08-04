@@ -36,19 +36,39 @@ function parseFrontmatter(fileContent) {
   const body = match[2];
   const data = {};
 
-  for (const line of raw.split("\n")) {
-    const idx = line.indexOf(":");
-    if (idx === -1) continue;
-    const key = line.slice(0, idx).trim();
-    let value = line.slice(idx + 1).trim();
+  let currentKey = null;
 
+  for (const line of raw.split("\n")) {
+    // Wrapped continuation line (Decap/js-yaml folds long values onto
+    // indented lines with no "key:" of their own) — append it to whatever
+    // key we were last reading instead of discarding it.
+    if (/^\s+\S/.test(line) && currentKey) {
+      data[currentKey] += (data[currentKey] ? " " : "") + line.trim();
+      continue;
+    }
+
+    const idx = line.indexOf(":");
+    if (idx === -1) {
+      currentKey = null;
+      continue;
+    }
+
+    const key = line.slice(0, idx).trim();
+    const value = line.slice(idx + 1).trim();
+
+    data[key] = value;
+    currentKey = key;
+  }
+
+  // Strip matching surrounding quotes now that wrapped values are whole.
+  for (const key of Object.keys(data)) {
+    let value = data[key];
     if (
       (value.startsWith('"') && value.endsWith('"')) ||
       (value.startsWith("'") && value.endsWith("'"))
     ) {
       value = value.slice(1, -1);
     }
-
     data[key] = value;
   }
 
