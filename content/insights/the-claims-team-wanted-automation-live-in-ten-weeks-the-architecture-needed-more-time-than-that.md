@@ -6,7 +6,7 @@ seo_title: The claims team wanted automation live in ten weeks. The architecture
 description: What comes first.  Speed or Accuracy?
 category: process-automation
 date: 2026-08-20T14:07:00.000+01:00
-thumbnail: /assets/uploads/11-architecture-first-claims-overhaul.png
+thumbnail: ""
 summary: A case study on the tension between visible speed and durable delivery
   — and why the slower path is often the faster one, once you count properly.
 ---
