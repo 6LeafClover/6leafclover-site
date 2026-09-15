@@ -156,15 +156,13 @@ footer.site{background:var(--navy);color:#B9C0CC;padding:56px 0 30px;margin-top:
 .filter-pill{border:1px solid var(--rule-strong);background:var(--card);padding:9px 18px;border-radius:20px;font-size:14px;font-weight:600;cursor:pointer;}
 .filter-pill.active{background:var(--navy);color:#fff;border-color:var(--navy);}
 .post-card{background:var(--card);border:1px solid var(--rule);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;}
-.post-thumb{height:150px;background:linear-gradient(135deg,var(--navy),var(--navy-soft));display:flex;align-items:center;justify-content:center;}
-.post-thumb img{width:44px;opacity:.85;}
+.post-thumb{height:6px;}
 .post-body{padding:22px 24px 26px;}
 .post-body .tag{margin-bottom:12px;}
 .post-body p{color:var(--ink-soft);font-size:14.5px;}
 .readmore{color:var(--green-dark);font-weight:700;font-size:14px;text-decoration:none;}
-.featured{display:grid;grid-template-columns:1fr 1fr;gap:0;background:var(--card);border:1px solid var(--rule);border-radius:20px;overflow:hidden;margin-bottom:48px;}
-.featured .side{background:linear-gradient(135deg,var(--navy),var(--navy-soft));display:flex;align-items:center;justify-content:center;padding:40px;}
-.featured .side img{width:110px;opacity:.9;}
+.featured{display:flex;background:var(--card);border:1px solid var(--rule);border-radius:20px;overflow:hidden;margin-bottom:48px;}
+.featured .side{width:8px;flex-shrink:0;}
 .featured .body{padding:44px;}
 
 /* dev note */
@@ -303,6 +301,12 @@ nav.mainnav a.current{color:var(--green-dark);border-bottom:2px solid var(--gree
     "objectif-lune": "Objectif Lune"
   };
 
+  var CATEGORY_COLORS = {
+    "process-automation": "#22B573",
+    "partner-growth": "#C9A227",
+    "objectif-lune": "#3B6E8F"
+  };
+
   function escapeHtml(str) {
     return String(str || "").replace(/[&<>"']/g, function (c) {
       return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
@@ -313,9 +317,13 @@ nav.mainnav a.current{color:var(--green-dark);border-bottom:2px solid var(--gree
     return CATEGORY_LABELS[cat] || "Insights";
   }
 
+  function categoryColor(cat) {
+    return CATEGORY_COLORS[cat] || "#5B6472";
+  }
+
   function thumbBlock(post, sizeClass) {
-    // No real thumbnail images yet -- shows the on-brand gradient box.
-    return '<div class="' + sizeClass + '"></div>';
+    // Thin colour strip keyed by category, instead of an empty image box.
+    return '<div class="' + sizeClass + '" style="background:' + categoryColor(post.category) + ';"></div>';
   }
 
   function renderFeatured(post) {
