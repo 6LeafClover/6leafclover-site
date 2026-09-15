@@ -438,15 +438,4 @@ async function build() {
 build().catch((error) => {
   console.error(error);
   process.exit(1);
-});ew Date(a.date || 0));
-
-  await fs.writeFile(MANIFEST_FILE, JSON.stringify(posts, null, 2), "utf8");
-  await fs.writeFile(LATEST_FILE, JSON.stringify(posts[0] || null, null, 2), "utf8");
-
-  console.log(`Built ${posts.length} insight post(s).`);
-}
-
-build().catch((error) => {
-  console.error(error);
-  process.exit(1);
 });
