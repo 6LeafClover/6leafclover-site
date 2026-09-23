@@ -249,15 +249,19 @@ function articleTemplate(post) {
   header.site{background:var(--cream);border-bottom:1px solid var(--rule);}
   .header-inner{display:flex;align-items:center;justify-content:space-between;padding:20px 0;flex-wrap:wrap;gap:16px;}
   .brand img{height:56px;width:auto;}
-  nav.mainnav{display:flex;align-items:flex-start;gap:24px;flex-wrap:wrap;}
-  nav.mainnav a{font-size:14px;font-weight:600;color:var(--navy);text-decoration:none;}
-  nav.mainnav a.current{color:var(--green-dark);border-bottom:2px solid var(--green);padding-bottom:4px;}
-  .nav-group{display:flex;flex-direction:column;}
-  .nav-group-label{font-size:14px;font-weight:600;color:var(--navy);line-height:1.3;}
-  .nav-sub{display:flex;gap:10px;margin-top:3px;}
-  .nav-sub a{font-size:11.5px;font-weight:600;color:var(--ink-soft);text-decoration:none;white-space:nowrap;}
-  .nav-sub a.current{color:var(--green-dark);}
-  .nav-cta{background:var(--green);color:#fff !important;padding:9px 18px;border-radius:8px;font-weight:700 !important;border-bottom:none !important;}
+  nav.mainnav{display:flex;align-items:center;gap:28px;flex-wrap:wrap;}
+  nav.mainnav > a{font-size:17px;font-weight:700;color:var(--navy);text-decoration:none;}
+  nav.mainnav > a.current{color:var(--green-dark);border-bottom:2px solid var(--green);padding-bottom:4px;}
+  .nav-dropdown{position:relative;}
+  .nav-dropdown-trigger{background:none;border:none;font-size:17px;font-weight:700;color:var(--navy);cursor:pointer;display:flex;align-items:center;gap:6px;padding:0;font-family:inherit;}
+  .nav-dropdown-trigger.current{color:var(--green-dark);}
+  .nav-dropdown-trigger svg{transition:transform .15s ease;flex-shrink:0;}
+  .nav-dropdown.open .nav-dropdown-trigger svg{transform:rotate(180deg);}
+  .nav-dropdown-menu{display:none;position:absolute;top:34px;left:0;background:#fff;border-radius:10px;border:1px solid var(--rule);min-width:200px;padding:6px;box-shadow:0 12px 24px rgba(25,33,52,.10);z-index:20;}
+  .nav-dropdown.open .nav-dropdown-menu{display:block;}
+  .nav-dropdown-menu a{display:block;padding:10px 14px;font-size:15px;font-weight:600;color:var(--navy);text-decoration:none;border-radius:6px;}
+  .nav-dropdown-menu a:hover{background:var(--green-tint);}
+  .nav-dropdown-menu a.current{color:var(--green-dark);}
 
   .hero{padding:56px 0 40px;background:var(--paper);border-bottom:1px solid var(--rule);}
   .hero .date{font-size:13.5px;color:var(--ink-soft);font-weight:600;margin-bottom:8px;}
@@ -294,25 +298,51 @@ function articleTemplate(post) {
     <a href="/" class="brand"><img src="/assets/6leaf-main.png" alt="6 Leaf Clover"></a>
     <nav class="mainnav">
       <a href="/">Home</a>
-      <div class="nav-group">
-        <span class="nav-group-label">Process Automation</span>
-        <span class="nav-sub">
+
+      <div class="nav-dropdown" id="nav-pa">
+        <button type="button" class="nav-dropdown-trigger" onclick="toggleNavDropdown('nav-pa')">
+          Process Automation
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="nav-dropdown-menu">
           <a href="/process-automation-direct.html">For Your Business</a>
           <a href="/process-automation-partner.html">Partner Growth</a>
-        </span>
+        </div>
       </div>
-      <div class="nav-group">
-        <span class="nav-group-label">Objectif Lune</span>
-        <span class="nav-sub">
+
+      <div class="nav-dropdown" id="nav-ol">
+        <button type="button" class="nav-dropdown-trigger" onclick="toggleNavDropdown('nav-ol')">
+          Objectif Lune
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="nav-dropdown-menu">
           <a href="/objectif-lune-customers.html">Existing Customers</a>
           <a href="/objectif-lune-erp.html">ERP/IBM Channel</a>
-        </span>
+        </div>
       </div>
+
       <a href="/insights.html" class="current">Insights</a>
-      <a href="/index.html#contact" class="nav-cta">Book a conversation</a>
     </nav>
   </div>
 </header>
+<script>
+(function(){
+  function closeAllNavDropdowns(){
+    document.querySelectorAll('.nav-dropdown.open').forEach(function(el){
+      el.classList.remove('open');
+    });
+  }
+  window.toggleNavDropdown = function(id){
+    var el = document.getElementById(id);
+    var isOpen = el.classList.contains('open');
+    closeAllNavDropdowns();
+    if (!isOpen) el.classList.add('open');
+  };
+  document.addEventListener('click', function(e){
+    if (!e.target.closest('.nav-dropdown')) closeAllNavDropdowns();
+  });
+})();
+</script>
 
 <section class="hero">
   <div class="wrap">
